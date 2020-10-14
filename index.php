@@ -3,6 +3,7 @@ require_once('../../../config.php');
 global $DB, $CFG, $PAGE;
 $PAGE->set_context(context_system::instance());
 $PAGE->set_pagelayout('base');
+// CONFIGURAR EL NOMBRE DEL CAMPUS A CUAL PERTENECERA EL ACTUALIZADOR
 $PAGE->set_title('CAMPUS CONSORCIO: ACTUALIZAR ');
 $PAGE->set_heading('CAMPUS CONSORCIO: ACTUALIZAR');
 echo $OUTPUT->header();
