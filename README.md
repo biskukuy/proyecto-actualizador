@@ -1,6 +1,7 @@
 # proyecto-actualizador
 
 Este proyecto sirve para actualizar los datos de los usuarios matriculados en los diversos campus.
+Los archivos deben copiarse dentro de la carpeta .../local/pages/actualizador
 
 Hasta el momento con esta aplicacion se puede:
 1) Borrar las encuestas
