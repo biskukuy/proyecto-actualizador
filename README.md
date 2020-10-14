@@ -15,3 +15,12 @@ Hasta el momento con esta aplicacion se puede:
    username , id del curso, id del SENCE, fecha fin
    12345678, 100, 111222333, 00-00-0000
    
+   
+   instrucciones:
+   luego de crear la rama main
+   git branch -M main
+   git push -u origin main
+   git fetch: paa verificar el repositorio local con respecto al repositorio remoto
+   git push: traer todo lo nuevo del repositorio remoto antes de hacer commit
+   
+
