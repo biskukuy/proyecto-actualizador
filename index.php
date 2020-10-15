@@ -230,9 +230,11 @@ include("../funciones.php");
       <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="accion13" name="accion13" value="1">
                     <label class="form-check-label" for="defaultCheck1"> Subir CSV SENCE (username,id curso,idsence,fecha)</label>
+
             </div>
           <div class="caja-5">
                     <input type="file" class="form-control" id="campoFichero" name="campoFichero" />
+                     <button type="button" class="btn btn-success" id="btn_lote" name="btn_lote"  > Subir CSV SENCE </button>
           </div>
 
 
@@ -243,25 +245,25 @@ include("../funciones.php");
      			<p style="text-align: left;">
 
             <button type="submit" class="btn btn-success " id="create-account-button">Procesar </button>
-            <button type="reset" class="btn btn-info "  onclick="limpiarFiltros();">Limpiar </button>
+            <button type="reset" class="btn btn-warning "  onclick="limpiarFiltros();">Limpiar </button>
             <a href="<?php echo $CFG->wwwroot;?>/admin/tool/uploaduser/index.php" target="_blank">
-"
-              <button type="button" class="btn btn-info "  > Cargar usuarios </button>
+
+              <button type="button" class="btn btn-info "  > Subir usuarios por CSV </button>
               </a>
                <a href="<?php echo $CFG->wwwroot;?>/user/editadvanced.php?id=-1" target="_blank">
-"
-              <button type="button" class="btn btn-info "  > Crear usuario </button>
+
+              <button type="button" class="btn btn-info "  > Crear nuevo usuario </button>
               </a>
 
               <a href="<?php echo $CFG->wwwroot;?>/local/pages/sence/inscribe.php" target="_blank">
-"
-              <button type="button" class="btn btn-info "  > Inscribir Sence </button>
+
+              <button type="button" class="btn  btn-danger "  > Inscribir Sence </button>
               </a>
 
-               <button type="button" class="btn btn-success" id="btn_lote" name="btn_lote"  > Subir CSV SENCE </button>
+
                <a href="<?php echo $CFG->wwwroot; ?>/local/pages/sence/reporte_sence1.php" target="_blank">
 
-              <button type="button" class="btn btn-success "  > Listado Sence </button>
+              <button type="button" class="btn btn-danger "  > Listado Sence </button>
               </a>
 				</p>
 
