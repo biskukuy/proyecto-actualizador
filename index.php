@@ -227,6 +227,7 @@ include("../funciones.php");
 
 
 
+
       <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="accion13" name="accion13" value="1">
                     <label class="form-check-label" for="defaultCheck1"> Subir CSV SENCE (username,id curso,idsence,fecha)</label>
@@ -237,7 +238,10 @@ include("../funciones.php");
                      <button type="button" class="btn btn-success" id="btn_lote" name="btn_lote"  > Subir CSV SENCE </button>
           </div>
 
-
+    <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="accion14" name="accion14" value="1">
+                    <label class="form-check-label" for="defaultCheck1"> Consultar Matricula</label>
+          </div>
 
       </div>
 
@@ -330,7 +334,7 @@ echo $OUTPUT->footer();
 $(document).ready(function() {
 
   $( '#accion4' ).on( 'click', function(e) {
-      //e.preventDefault();
+
         if( $(this).is(':checked') ){
             // Hacer algo si el checkbox ha sido seleccionado
             $('.caja-1').css('display', 'block');
@@ -342,19 +346,16 @@ $(document).ready(function() {
         }
       });
       $( '#accion5' ).on( 'click', function(e) {
-      //e.preventDefault();
         if( $(this).is(':checked') ){
             // Hacer algo si el checkbox ha sido seleccionado
             $('.caja-2').css('display', 'block');
             Oculto2 = false;
         } else {
-            // Hacer algo si el checkbox ha sido deseleccionado
             $('.caja-2').css('display', 'none');
             Oculto2 = true;
         }
       });
  $( '#accion8' ).on( 'click', function(e) {
-      //e.preventDefault();
         if( $(this).is(':checked') ){
             // Hacer algo si el checkbox ha sido seleccionado
             $('.caja-3').css('display', 'block');
@@ -367,7 +368,7 @@ $(document).ready(function() {
       });
 
        $( '#accion10' ).on( 'click', function(e) {
-      //e.preventDefault();
+
         if( $(this).is(':checked') ){
             // Hacer algo si el checkbox ha sido seleccionado
             $('.caja-4').css('display', 'block');
@@ -381,7 +382,6 @@ $(document).ready(function() {
 
 
         $( '#accion13' ).on( 'click', function(e) {
-      //e.preventDefault();
         if( $(this).is(':checked') ){
             // Hacer algo si el checkbox ha sido seleccionado
             $('.caja-5').css('display', 'block');
@@ -443,11 +443,12 @@ $(function(){
         if ($('#accion5').prop('checked') ) { vaccion5 = 1 }else { vaccion5 = "0";}
         if ($('#accion6').prop('checked') ) { vaccion6 = 1 }else { vaccion6 = "0";}
         if ($('#accion7').prop('checked') ) { vaccion7 = 1 }else { vaccion7 = "0";}
-       if ($('#accion8').prop('checked') ) { vaccion8 = 1 }else { vaccion8 = "0";}
+       	if ($('#accion8').prop('checked') ) { vaccion8 = 1 }else { vaccion8 = "0";}
         if ($('#accion9').prop('checked') ) { vaccion9 = 1 }else { vaccion9 = "0";}
         if ($('#accion10').prop('checked') ) { vaccion10 = 1 }else { vaccion10 = "0";}
         if ($('#accion11').prop('checked') ) { vaccion11 = 1 }else { vaccion11 = "0";}
-  if ($('#accion12').prop('checked') ) { vaccion12 = 1 }else { vaccion12 = "0";}
+  		if ($('#accion12').prop('checked') ) { vaccion12 = 1 }else { vaccion12 = "0";}
+ 		if ($('#accion14').prop('checked') ) { vaccion14 = 1 }else { vaccion14 = "0";}
        // if ($('#accion666').prop('checked') ) { vaccion666 = 1 }else { vaccion666 = "0";}
         if ($("#fechainicio").val()!=""){ vfechainicio = $("#fechainicio").val(); } else { vfechainicio = "0"; }
         if ($("#fechafin").val()!=""){ vfechafin = $("#fechafin").val(); } else { vfechafin = "0"; }
@@ -480,6 +481,7 @@ vrut ="'"+vrut+"'"
     accion10 : vaccion10,
     accion11 : vaccion11,
      accion12 : vaccion12,
+     accion14 : vaccion14,
   //  accion666 : vaccion666,
     fechainicio : vfechainicio,
     fechafin : vfechafin,

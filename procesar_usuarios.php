@@ -22,6 +22,7 @@ if(!empty($_POST['accion9'])){ $accion9 = $_POST['accion9'];}else $accion9=0;
 if(!empty($_POST['accion10'])){ $accion10 = $_POST['accion10'];}else $accion10=0;
 if(!empty($_POST['accion11'])){ $accion11 = $_POST['accion11'];}else $accion11=0;
 if(!empty($_POST['accion12'])){ $accion12 = $_POST['accion12'];}else $accion12=0;
+if(!empty($_POST['accion14'])){ $accion14 = $_POST['accion14'];}else $accion14=0;
 
 if(!empty($_POST['accion666'])){ $accion666 = $_POST['accion666'];}else $accion666=0;
 if(!empty($_POST['fechainicio'])){ $xfechainicio = $_POST['fechainicio'];}else $xfechainicio=0;
@@ -142,100 +143,66 @@ $Sql13 = "SELECT usuario.id, usuario.username  FROM mdl_user usuario WHERE usuar
     if ($accion1 == 1 ){
 
 
-  echo "<span class='label label-info'> Borrando Encuestas: <br> <br> </span> <br>  ";
-     //  $res = mysql_query($sql1, $conexion);
-      // $res2 = $DB->get_recordset_sql($sql1);
+      echo "<span class='label label-info'> Borrando Encuestas: <br> <br> </span> <br>  ";
        $res = $DB->get_recordset_sql($sql1);
-
-
-   //while($rs=mysql_fetch_array($res))
        foreach ($res as $rs)
     {
-        $i++;
-        //   $id=$rs["campo1"];
-           $id = $rs->campo1;
-       //Caso de borrar LAS ENCUESTAS
- // $DB->delete_records('mdl_questionnaire_attempts', array('id' => $id) );
-
-      $sql22 =  "delete from mdl_questionnaire_attempts  where id=$id";
-    //  $res2 = mysql_query($sql22, $conexion);
-    //   $DB->execute($sql22);
+            $i++;
+            $id = $rs->campo1;
+           //Caso de borrar LAS ENCUESTAS
+         // $DB->delete_records('mdl_questionnaire_attempts', array('id' => $id) );
+          $sql22 =  "delete from mdl_questionnaire_attempts  where id=$id";
+        //  $res2 = mysql_query($sql22, $conexion);
+           $DB->execute($sql22);
         }
 
     }
   // echo "<br>";
 if ($accion2 == 1 ){
        // echo "Sentencia: <br> $sql2  <br>";
-         echo "<span class='label label-info'>Borrando el tiempo  de reproduccion de los videos</span> <br> ";
-        // $res = mysql_query($sql2, $conexion);
-           $res = $DB->get_recordset_sql($sql2);
-
-   // while($rs=mysql_fetch_array($res))
-      foreach ($res as $rs)
+  echo "<span class='label label-info'>Borrando el tiempo  de reproduccion de los videos</span> <br> ";
+   $res = $DB->get_recordset_sql($sql2);
+   foreach ($res as $rs)
     {
             $i++;
-        // $id=$rs["campo1"];
             $id=$rs->campo1;
-
-       //Caso de borrar el tiempo a cero de los videos
-      $sql22 =  " UPDATE mdl_richmedia_track SET time = 0 WHERE mdl_richmedia_track.id = '$id'";
-    //  $res2 = mysql_query($sql22, $conexion);
+        //Caso de borrar el tiempo a cero de los videos
+          $sql22 =  " UPDATE mdl_richmedia_track SET time = 0 WHERE mdl_richmedia_track.id = '$id'";
        $DB->execute($sql22);
         }
-       // printf("Registros actualizados: %d\n", mysql_affected_rows());
     }
      echo "<br>";
 if ($accion3 == 1 ){
-     //   echo "Sentencia: <br> $sql3  <br>";
-
          echo "<span class='label label-info'>Borrar el check de modulos completados</span><br>  ";
-         // $res = mysql_query($sql3, $conexion);
          $res = $DB->get_recordset_sql($sql3);
-
-       // while($rs=mysql_fetch_array($res))
         foreach ($res as $rs)
         {
            $i++;
-         // $id=$rs["campo1"];
-         $id=$rs->campo1;
-
-            echo "<br>";
+           $id=$rs->campo1;
        //Caso de borrar LOS MODULOS VISTOS  COMPLETOS
         $sql22= "DELETE FROM mdl_course_modules_completion  WHERE mdl_course_modules_completion.id = $id";
-       // $res2 = mysql_query($sql22, $conexion);
          $DB->execute($sql22);
         }
-        //printf("Registros borrados: %d\n", mysql_affected_rows());
     }
 
     if ($accion4 == 1 && $accion5 == 0){
-   // echo "<br>Sentencia: <br> $sql4  <br>";
-     // $res = mysql_query($sql4, $conexion);
        $res = $DB->get_recordset_sql($sql4);
       echo "<span class='label label-info'>Actualizando Fechas de Inicio</span><br>  ";
-
-       // while($rs=mysql_fetch_array($res))
          foreach ($res as $rs)
         {
             echo " <br> $i :  ";$i++;
-
-             $id=$rs->id;
-
+             echo $id=$rs->id;
               $d1=$rs->d1;
              $fx2 = date("Y-m-d",strtotime($xfechainicio));
-             echo  "Actualizar de ".  $rs->fechainicio. " a ". $fx2  ;
-
+             echo  " Actualizar de ".  $rs->fechainicio. " a ". $fx2  ;
             $xTiempo_nuevo = strtotime($fx2);
 
        //Caso de modificar las fechas de matriculacion de un curso
         $sql22 =  "  UPDATE mdl_user_enrolments SET timestart = $xTiempo_nuevo WHERE mdl_user_enrolments.id = '$id'";
           $DB->execute($sql22);
-
-       // $res2 = mysql_query($sql22, $conexion);
-        }
+       }
     }
     if ($accion5 == 1 && $accion4 == 0){
-      // echo "<br>Sentencia: <br> $sql4  <br>";
        echo "<span class='label label-info'>Actualizando Fechas de Fin</span><br><span class='label'>  ";
 
          $res = $DB->get_recordset_sql($sql4);
@@ -243,35 +210,25 @@ if ($accion3 == 1 ){
          $fx2 = date("Y-m-d",strtotime($xfechafin));
           $xTiempo_nuevo = strtotime($fx2);
          foreach ($res as $rs)
-
            {
                echo " <br> $i :  ";$i++;
                echo $id=$rs->id;
                echo " - ";
                $d1=$rs->d1;
               echo  "Actualizar de ".  $rs->fechafin. " a ". $fx2  ;
-
-
           //Caso de modificar las fechas de matriculacion de un curso
-           $sql22 =  "  UPDATE mdl_user_enrolments SET timeend = $xTiempo_nuevo WHERE mdl_user_enrolments.id = '$id'";
+            $sql22 =  "  UPDATE mdl_user_enrolments SET timeend = $xTiempo_nuevo WHERE mdl_user_enrolments.id = '$id'";
             $DB->execute($sql22);
-
-                      //  $res2 = mysql_query($sql22, $conexion);
            }
            echo "</span>";
        }
        if ($accion5 == 1 && $accion4 == 1) {
-               // echo "<br>Sentencia: <br> $sql4  <br>";
-
                 $res = $DB->get_recordset_sql($sql4);
                echo "<span class='label label-info'>Actualizando Fechas de Inicio y Fecha Fin </span><br>  ";
-
-              // while($rs=mysql_fetch_array($res))
                foreach ($res as $rs)
                {
                      echo " <br> $i :  ";$i++;
-                       // $id=$rs["id"];
-                        $id=$rs->id;
+                     echo  $id=$rs->id;
 
                      $fx1 = date("Y-m-d",strtotime($xfechainicio));
                      echo  "Actualizar de ".  $rs->fechainicio. " a ". $fx1  ;
@@ -288,7 +245,7 @@ if ($accion3 == 1 ){
                }
 
        }
-       if ($accion666 ==  1) {
+      if ($accion666 ==  1) {
          echo "<br>Sentencia: <br> $sql666  <br>";
         $res = mysql_query($sql666, $conexion);
         echo "<span class='label label-info'>Actualizando FEcha y hora  </span><br>  ";
@@ -306,44 +263,29 @@ if ($accion3 == 1 ){
 
 }
 
-    if ($accion6 == 1 ){
-       // echo "<br>Sentencia: <br> $sql6  <br>";
+if ($accion6 == 1 ){
        echo "<span class='label label-info'>Actualizando  Avances de video </span><br>  ";
-         // $res = mysql_query($sql6, $conexion);
-           $res = $DB->get_recordset_sql($sql6);
-           // while($rs=mysql_fetch_array($res))
-               foreach ($res as $rs)
+        $res = $DB->get_recordset_sql($sql6);
+         foreach ($res as $rs)
             {
-
-                // echo $id=$rs["id"];
                 echo $id=$rs->id;
                  echo "<br>";
-
-
                  //Caso de llenar tiempo A  LOS MODULOS
                  $sql22 =  " UPDATE mdl_richmedia_track SET time = 2000 WHERE mdl_richmedia_track.id = '$id'";
                   $DB->execute($sql22);
-                // $res2 = mysql_query($sql22, $conexion);
             }
         }//fin si
 
  if ($accion7 == 1 ){
-       //echo "<br>Sentencia: <br> $sql7  <br>";
        echo "<span class='label label-info'>Borrando Bloque sence </span><br>  ";
-         // $res = mysql_query($sql7, $conexion);
-           $res = $DB->get_recordset_sql($sql7);
-
-           // while($rs=mysql_fetch_array($res))
-            foreach ($res as $rs)
+       $res = $DB->get_recordset_sql($sql7);
+       foreach ($res as $rs)
             {
               $i++;
-              //$id=$rs["idusence"];
-               $id=$rs->idusence;
-
+              $id=$rs->idusence;
               //borrar el id de la tabla SENCE
-                  $sql22 =  "delete from  mdl_bcn_usuarios_sence WHERE idusence = $id";
-                    $DB->execute($sql22);
-                // $res2 = mysql_query($sql22, $conexion);
+              $sql22 =  "delete from  mdl_bcn_usuarios_sence WHERE idusence = $id";
+              $DB->execute($sql22);
             }
         }//fin si
 
@@ -352,15 +294,15 @@ if ($accion3 == 1 ){
  if ($accion8 == 1 && $accion9 == 1 ){
        //echo "<br>Sentencia: <br> $sql7  <br>";
        echo "<span class='label label-info'>Desmatriculando </span><br>  ";
-          $res = $DB->get_recordset_sql($Sql8);
-            foreach ($res as $rs)
+       $res = $DB->get_recordset_sql($Sql8);
+       foreach ($res as $rs)
             {
               $i++;
               $id= $rs->id;
 
               //borrar el id de la tabla
               $SQL = "DELETE FROM mdl_user_enrolments WHERE id = $id";
-       $DB->execute($SQL);
+              $DB->execute($SQL);
             }
         }//fin si
 
@@ -378,8 +320,8 @@ if ($accion3 == 1 ){
 
               //borrar el id de la tabla
               //$SQL = "DELETE FROM mdl_user_enrolments WHERE id = $id";
-                 $SQL =  "  UPDATE mdl_user SET suspended = 1 WHERE mdl_user.id = '$id'";
-       $DB->execute($SQL);
+            $SQL =  "  UPDATE mdl_user SET suspended = 1 WHERE mdl_user.id = '$id'";
+              $DB->execute($SQL);
             }
         }//fin si
 //  $DB->execute($sql, array $params=null)
@@ -416,12 +358,46 @@ where mqa.userid = 1799 and mq.course = 5 and mqa.quiz = mq.id
 
               //borrar el id de la tabla
               $SQL = "DELETE FROM mdl_quiz_attempts  WHERE id = $id";
-              //   $SQL =  "  UPDATE mdl_user SET suspended = 1 WHERE mdl_user.id = '$id'";
-       $DB->execute($SQL);
+              $DB->execute($SQL);
             }
         }//fin si
 
+if ($accion14 == 1){
+       $res = $DB->get_recordset_sql($sql4);
+      echo "<span class='label label-info'>Consultando Matriculaciones </span><br>  ";
+      /*
+      SELECT mue.id, from_unixtime(mue.timestart) fechainicio,from_unixtime(mue.timeend) fechafin,usuario.username,mue.timestart d1
+FROMmdl_user_enrolments mue,mdl_user usuario,mdl_enrol enrol,mdl_course curso
+WHEREusuario.id = mue.userid AND enrol.id = mue.enrolid andenrol.courseid = curso.id ANDcurso.id = '$id_curso' ANDusuario.username in ($usuarios)";*/
+?>
+<table  class="table table-striped table-bordered table-hover" id="datostabla">
+  <thead>
+    <tr>
+      <th  >Rut</th>
+      <th  >Fecha Inicio </th>
+      <th  >Fecha Fin </th>
 
+    </tr>
+  </thead>
+  <tbody>
+<?php
+$html = "";
+         foreach ($res as $rs)
+        {
+            $i++;
+             $username=$rs->username;
+              $d1=$rs->d1;
+             $fx1 = date("Y-m-d",strtotime($rs->fechainicio));
+             $fx2 = date("Y-m-d",strtotime($rs->fechafin));
+             $html .= "<tr><td>$username</td><td>$fx1</td><td>$fx2</td></tr>";
+
+       }
+       echo $html;
+       ?>
+     </tbody>
+   </table>
+   <?php
+    }
 
 
 
